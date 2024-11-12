@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
-//import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
 import com.devsuperior.dslist.repositories.GameRepository;
+
 
 /*Service --> componente responsável por implementar lógica de negócio.
  * Orquestra todas as operações da lógica de negócio. Nesta lógica de negócio o service tem que
@@ -31,11 +33,22 @@ public class GameService {
 	@Autowired
 	private GameRepository gameRepository;
 	
+	/*@Transactionl --> é uma boa prática para colocar em todo o método do seu service para que fique transacional
+	 *  para que ele garanta que a opração com o banco de dados ela vai acontecer obedecendo ao princípio das
+	 *  transações (atômica, consistente, isolada e durável). 
+	 */
+	@Transactional(readOnly = true) //readOnly = true --> não vai fazer nenhuma operação de escrita, fica mais rápido
+	public GameDTO findById(Long id) {//Método para buscar por ID
+		Game result = gameRepository.findById(id).get();
+		return new GameDTO(result); //Converte para DTO
+	}
+	
+	@Transactional(readOnly = true)
 	public List<GameMinDTO> findAll() {
 		//Consulta no banco de dados que consulta os games
 		List<Game> result = gameRepository.findAll();
 		/*gameRepository.findAll() --> é o método que já vem pronto, que por padrão já vai gerar
-		 * uam consulta no banco de dados, para buscar todos os game. O resultado dessa consulta,
+		 * uma consulta no banco de dados, para buscar todos os games. O resultado dessa consulta,
 		 * que vai ser uma tabela de games, vai ser automaticamente convertida para uma lista de game
 		   e o resultado cai na variável result*/
 		

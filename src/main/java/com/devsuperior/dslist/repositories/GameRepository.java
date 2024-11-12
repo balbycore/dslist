@@ -12,6 +12,8 @@ import com.devsuperior.dslist.entities.Game;
  * para o controlador*/
 /*Repository --> objeto responsável por fazer consultas ao banco de dados,
  * utilizando um componente do Spring, que é o JpaRepository*/
+/*JpaRepository --> é um componente do Spring, que já tem todas as operações básicas prontas,
+ * inclusive a busca por ID*/
 													//ID e o tipo
 public interface GameRepository extends JpaRepository<Game, Long>{
 

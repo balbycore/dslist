@@ -29,7 +29,7 @@ public class GameService {
 	
 	/*Estou criando um componente service, que está a uma camada acima do repository,
 	 * o GameService vai chamar o GameRepository que está na outra camada, e para chamar
-	 * eu tenho que puxar uma instancia do GameReposutory*/
+	 * eu tenho que puxar uma instancia do GameRepository*/
 	//Vai injetar uma instancia do GameRepository dentro do GameService usando a anotation @Autowired
 	@Autowired
 	private GameRepository gameRepository;

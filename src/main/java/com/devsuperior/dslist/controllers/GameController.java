@@ -22,7 +22,9 @@ import com.devsuperior.dslist.services.GameService;
 @RequestMapping(value = "/games")
 public class GameController {
 	
-	//Injeta um service do controller
+	/*@Autowirde --> Injeta um service do controller, indica um ponto aonde a injeção
+	 * automática deve ser aplicada. Esta pode ser usada em métodos, atributos e construtores.
+	 */
 	@Autowired
 	private GameService gameService;
 	
